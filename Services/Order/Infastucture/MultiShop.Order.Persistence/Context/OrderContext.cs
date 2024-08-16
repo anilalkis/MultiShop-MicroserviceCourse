@@ -17,6 +17,6 @@ namespace MultiShop.Order.Persistence.Context
 
         DbSet<Address> Addresses { get; set; }
         DbSet<OrderDetail> OrderDetails { get; set; }
-        DbSet<Ordering> Orderings { get; set; }
+        DbSet<GetOrderingResult> Orderings { get; set; }
     }
 }

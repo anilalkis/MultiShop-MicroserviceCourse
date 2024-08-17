@@ -12,11 +12,11 @@ namespace MultiShop.Order.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=...;Initial Catalog=MultishopOrderDb;integrated security=true;");
+            optionsBuilder.UseSqlServer("Server=localhost,1440;Initial Catalog=MultishopOrderDb;User=sa;Password=123456aA*");
         }
 
         DbSet<Address> Addresses { get; set; }
         DbSet<OrderDetail> OrderDetails { get; set; }
-        DbSet<GetOrderingResult> Orderings { get; set; }
+        DbSet<Ordering> Orderings { get; set; }
     }
 }

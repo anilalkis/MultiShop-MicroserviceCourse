@@ -8,11 +8,10 @@ using MultiShop.Cargo.DataAccessLayer.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
-    opt.Authority = "ResourceCargo";
-    opt.Audience = builder.Configuration["IdentityServerUrl"];
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.Audience = "ResourceCargo";
     opt.RequireHttpsMetadata = false;
 });
 

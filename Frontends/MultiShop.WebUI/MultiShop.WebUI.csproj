@@ -10,4 +10,26 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Ovio\app\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\charts\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\component\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\dist\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\forms\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\help-documentation\assets\.DS_Store" />
+    <None Include="wwwroot\Ovio\help-documentation\assets\blueprint-css\plugins\.DS_Store" />
+    <None Include="wwwroot\Ovio\maps\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\pages\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\Ovio\tables\et-line-font\fonts\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiShop.DtoLayer\MultiShop.DtoLayer.csproj" />
+  </ItemGroup>
+
 </Project>

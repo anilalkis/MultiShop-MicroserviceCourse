@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
+using Newtonsoft.Json;
 
 namespace MultiShop.WebUI.Controllers
 {

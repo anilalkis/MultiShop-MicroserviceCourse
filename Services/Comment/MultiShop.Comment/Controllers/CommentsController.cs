@@ -57,5 +57,12 @@ namespace MultiShop.Comment.Controllers
             var values = _commentContext.UserComments.Find(id);
             return Ok(values);
         }
+
+        [HttpGet("CommentListByProductId")]
+        public IActionResult CommentListByProductId(string id)
+        {
+            var value = _commentContext.UserComments.Where(x=>x.ProductId == id);
+            return Ok(value);
+        }
     }
 }

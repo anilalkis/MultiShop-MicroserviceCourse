@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.FeatureSliderDtos;
+using MultiShop.WebUI.Services.CatalogServices.SliderServices;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -9,106 +10,77 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
     [Route("Admin/FeatureSlider")]
     public class FeatureSliderController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IFeatureSliderService _featureSliderService;
 
-        public FeatureSliderController(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+		public FeatureSliderController(IFeatureSliderService featureSliderService)
+		{
+			_featureSliderService = featureSliderService;
+		}
 
-        [Route("Index")]
+		[Route("Index")]
         public async Task<IActionResult> Index()
         {
-            ViewBag.v0 = "Öne Çıkan İşlemleri";
-            ViewBag.v1 = "Ana Sayfa";
-            ViewBag.v2 = "Öne Çıkanlar";
-            ViewBag.v3 = "Öne Çıkan Listesi";
+            FeatureSliderViewBagList();
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7270/api/FeatureSlider");
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeatureSliderDto>>(jsonData);
-                return View(values);
-            }
+			var values = await _featureSliderService.GetAllFeatureSlidersAsync();
+			if (values != null)
+			{
+				return View(values);
+			}
             return View();
-        }
+		}
 
         [HttpGet]
         [Route("CreateFeatureSlider")]
         public IActionResult CreateFeatureSlider()
         {
-            ViewBag.v0 = "Öne Çıkan İşlemleri";
-            ViewBag.v1 = "Ana Sayfa";
-            ViewBag.v2 = "Öne Çıkanlar";
-            ViewBag.v3 = "Yeni Öne Çıkan Girişi";
+			FeatureSliderViewBagList();
 
 
-            return View();
+			return View();
         }
 
         [HttpPost]
         [Route("CreateFeatureSlider")]
         public async Task<IActionResult> CreateFeatureSlider(CreateFeatureSliderDto createFeatureSliderDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFeatureSliderDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:7270/api/FeatureSlider", stringContent);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
-            }
-
-            return View();
+			await _featureSliderService.CreateFeatureSliderAsync(createFeatureSliderDto);
+			return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
+            
         }
 
         [Route("DeleteFeatureSlider/{id}")]
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7270/api/FeatureSlider?id=" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
-            }
-            return View();
+			await _featureSliderService.DeleteFeatureSliderAsync(id);
+			return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
         }
 
         [HttpGet]
         [Route("UpdateFeatureSlider/{id}")]
         public async Task<IActionResult> UpdateFeatureSlider(string id)
         {
-            ViewBag.v0 = "Öne Çıkan İşlemleri";
-            ViewBag.v1 = "Ana Sayfa";
-            ViewBag.v2 = "Öne Çıkanlar";
-            ViewBag.v3 = "Öne Çıkan Güncelleme Sayfası";
+			FeatureSliderViewBagList();
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7270/api/FeatureSlider/" + id);
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = await response.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateFeatureSliderDto>(jsonData);
-                return View(value);
-            }
-            return View();
-        }
+
+			var value = await _featureSliderService.GetByIdFeatureSliderAsync(id);
+			return View(value);
+		}
 
         [HttpPost]
         [Route("UpdateFeatureSlider/{id}")]
         public async Task<IActionResult> UpdateFeatureSlider(UpdateFeatureSliderDto updateFeatureSliderDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFeatureSliderDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync("https://localhost:7270/api/FeatureSlider/", stringContent);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
-            }
-            return View();
+			await _featureSliderService.UpdateFeatureSliderAsync(updateFeatureSliderDto);
+			return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
         }
+
+        void FeatureSliderViewBagList()
+        {
+			ViewBag.v0 = "Öne Çıkan İşlemleri";
+			ViewBag.v1 = "Ana Sayfa";
+			ViewBag.v2 = "Öne Çıkanlar";
+			ViewBag.v3 = "Öne Çıkan Listesi";
+		}
     }
 }

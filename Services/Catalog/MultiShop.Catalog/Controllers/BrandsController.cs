@@ -21,7 +21,7 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet]
         public async Task<IActionResult> BrandList()
         {
-            var values = await _BrandService.GetAllCategoriesAsync();
+            var values = await _BrandService.GetAllBrandsAsync();
             return Ok(values);
         }
 

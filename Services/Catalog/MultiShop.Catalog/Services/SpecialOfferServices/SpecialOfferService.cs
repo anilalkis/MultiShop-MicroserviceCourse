@@ -30,7 +30,7 @@ namespace MultiShop.Catalog.Services.SpecialOfferServices
             await _specialOfferCollection.DeleteOneAsync(x => x.SpecialOfferId == id);
         }
 
-        public async Task<List<ResultSpecialOfferDto>> GetAllCategoriesAsync()
+        public async Task<List<ResultSpecialOfferDto>> GetAllSpecialOfferAsync()
         {
             var values = await _specialOfferCollection.Find<SpecialOffer>(x => true).ToListAsync();
             return _mapper.Map<List<ResultSpecialOfferDto>>(values);

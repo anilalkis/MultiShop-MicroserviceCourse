@@ -4,7 +4,7 @@ namespace MultiShop.Catalog.Services.BrandServices
 {
     public interface IBrandService
     {
-        Task<List<ResultBrandDto>> GetAllCategoriesAsync();
+        Task<List<ResultBrandDto>> GetAllBrandsAsync();
         Task CreateBrandAsync(CreateBrandDto createBrandDto);
         Task UpdateBrandAsync(UpdateBrandDto updateBrandDto);
         Task DeleteBrandAsync(string id);

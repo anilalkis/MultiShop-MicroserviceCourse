@@ -21,7 +21,7 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet]
         public async Task<IActionResult> SpecialOfferList()
         {
-            var values = await _specialOfferService.GetAllCategoriesAsync();
+            var values = await _specialOfferService.GetAllSpecialOfferAsync();
             return Ok(values);
         }
 

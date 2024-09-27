@@ -21,7 +21,7 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet]
         public async Task<IActionResult> ContactList()
         {
-            var values = await _ContactService.GetAllCategoriesAsync();
+            var values = await _ContactService.GetAllContactAsync();
             return Ok(values);
         }
 

@@ -30,7 +30,7 @@ namespace MultiShop.Catalog.Services.ContactServices
             await _ContactCollection.DeleteOneAsync(x => x.ContactId == id);
         }
 
-        public async Task<List<ResultContactDto>> GetAllCategoriesAsync()
+        public async Task<List<ResultContactDto>> GetAllContactAsync()
         {
             var values = await _ContactCollection.Find<Contact>(x => true).ToListAsync();
             return _mapper.Map<List<ResultContactDto>>(values);

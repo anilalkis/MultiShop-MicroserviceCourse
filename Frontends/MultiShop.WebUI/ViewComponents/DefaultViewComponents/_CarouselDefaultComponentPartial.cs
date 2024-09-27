@@ -17,7 +17,7 @@ namespace MultiShop.WebUI.ViewComponents.DefaultViewComponent
 
 		public async Task<IViewComponentResult> InvokeAsync() 
         {
-            var values = _featureSliderService.GetAllFeatureSlidersAsync();
+            var values = await _featureSliderService.GetAllFeatureSlidersAsync();
             return View(values);
         }
     }

@@ -9,11 +9,11 @@ namespace MultiShop.Catalog.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class SpecialOfferController : ControllerBase
+    public class SpecialOffersController : ControllerBase
     {
         private readonly ISpecialOfferService _specialOfferService;
 
-        public SpecialOfferController(ISpecialOfferService specialOfferService)
+        public SpecialOffersController(ISpecialOfferService specialOfferService)
         {
             _specialOfferService = specialOfferService;
         }

@@ -53,7 +53,7 @@ namespace MultiShop.Catalog.Controllers
             return Ok("Ürün detayı başarıyla güncellendi.");
         }
 
-        [HttpGet("GetProductDetailByProductId")]
+        [HttpGet("GetProductDetailByProductId/{id}")]
         public async Task<IActionResult> GetProductDetailByProductId(string id)
         {
             var value = await _ProductDetailService.GetProductDetailByProductIdAsync(id);

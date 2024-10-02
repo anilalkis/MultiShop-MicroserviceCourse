@@ -8,6 +8,8 @@ namespace MultiShop.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.directory1 = "AnaSayfa";
+            ViewBag.directory2 = "AnaSayfa";
             return View();
         }
     }

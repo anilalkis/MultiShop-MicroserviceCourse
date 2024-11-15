@@ -15,8 +15,8 @@ namespace MultiShop.Order.Persistence.Context
             optionsBuilder.UseSqlServer("Server=localhost,1440;Initial Catalog=MultishopOrderDb;User=sa;Password=123456aA*");
         }
 
-        DbSet<Address> Addresses { get; set; }
-        DbSet<OrderDetail> OrderDetails { get; set; }
-        DbSet<Ordering> Orderings { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Ordering> Orderings { get; set; }
     }
 }

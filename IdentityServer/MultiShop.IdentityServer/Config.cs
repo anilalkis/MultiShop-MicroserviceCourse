@@ -75,6 +75,7 @@ namespace MultiShop.IdentityServer
                     "OrderFullPermission",
                     "DiscountFullPermission",
                     "MessageFullPermission",
+                    "CargoFullPermission",
 
                 IdentityServerConstants.LocalApi.ScopeName,
 				IdentityServerConstants.StandardScopes.OpenId,

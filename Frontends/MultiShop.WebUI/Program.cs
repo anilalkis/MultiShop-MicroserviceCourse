@@ -14,7 +14,9 @@ using MultiShop.WebUI.Services.CommentServices;
 using MultiShop.WebUI.Services.Concrete;
 using MultiShop.WebUI.Services.DiscountServices;
 using MultiShop.WebUI.Services.Interfaces;
+using MultiShop.WebUI.Services.MessageServices;
 using MultiShop.WebUI.Services.OrderServices.OrderOrderingServices;
+using MultiShop.WebUI.Services.UserIdentityServices;
 using MultiShop.WebUI.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +63,16 @@ builder.Services.AddScoped<ClientCredentialTokenHandler>();
 builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+
+builder.Services.AddHttpClient<IMessageService, MessageService>(opt =>
+{
+    opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IUserIdentityService,UserIdentityService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
@@ -127,6 +139,7 @@ builder.Services.AddHttpClient<ICommentService, CommentService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Comment.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 
 
 var app = builder.Build();

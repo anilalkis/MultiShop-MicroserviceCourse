@@ -99,7 +99,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 			ProductViewBagList();
 
 			//var client = _httpClientFactory.CreateClient();
-			//var response = await client.GetAsync("https://localhost:7270/api/Products/ProductListWithCategory");
+			//var response = await client.GetAsync("http://localhost:7270/api/Products/ProductListWithCategory");
 			//if (response.IsSuccessStatusCode)
 			//{
 			//	var jsonData = await response.Content.ReadAsStringAsync();

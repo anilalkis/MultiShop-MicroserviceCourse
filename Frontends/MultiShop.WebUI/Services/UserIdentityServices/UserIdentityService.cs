@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace MultiShop.WebUI.Services.UserIdentityServices
 {
-    public class UserIdentityService : IUserIdentityService
+    public class CargoCompaniesService : IUserIdentityService
     {
         private readonly HttpClient _httpClient;
 
-        public UserIdentityService(HttpClient httpClient)
+        public CargoCompaniesService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

@@ -34,7 +34,6 @@ namespace MultiShop.WebUI.Services.CatalogServices.BrandServices
 			var responseMessage = await _httpClient.GetAsync("brands/" + id);
 			var jsonData = await responseMessage.Content.ReadAsStringAsync();
 			var values = JsonConvert.DeserializeObject<UpdateBrandDto>(jsonData);
-
 			return values;
 		}
 
